@@ -1,0 +1,249 @@
+/* ----------------- Theme Variables ----------------- */
+:root {
+  --color-primary: #ff914d;
+  --color-secondary: #ff5e62;
+  --color-accent: #d35400;
+  --color-bg: #FFF5E1;
+  --color-box: #eef6f9;
+  --color-text: #333;
+  --radius: 0.75rem;
+  --shadow: 0 4px 12px rgba(0,0,0,0.15);
+  --transition: 0.3s ease;
+}
+
+/* ----------------- Navbar ----------------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  box-shadow: var(--shadow);
+  z-index: 1000;
+}
+
+.imglogo {
+  width: 7rem;
+  height: auto;
+  border: 2px solid #fff;
+  border-radius: var(--radius);
+}
+
+/* Nav Links */
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links ul li a {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.nav-links ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -6px;
+  left: 0;
+  background: #fff;
+  transition: width var(--transition);
+}
+
+.nav-links ul li a:hover::after,
+.nav-links ul li a.active::after {
+  width: 100%;
+}
+
+/* ----------------- Page Layout ----------------- */
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.grid-container {
+  margin: 5rem auto 2rem;
+  max-width: 1000px;
+  background: #fff;
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  border: 3px solid var(--color-primary);
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+/* ----------------- Titles ----------------- */
+h1 {
+  text-align: center;
+  color: var(--color-accent);
+  margin: 2rem 0 1rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+h2 {
+  color: var(--color-accent);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+/* ----------------- Form ----------------- */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #444;
+}
+
+textarea,
+input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  font-size: 1rem;
+}
+
+textarea:focus,
+input[type="file"]:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 145, 77, 0.4);
+}
+
+button {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#saveRecipeBtn {
+  background: #007bff;
+}
+
+#saveRecipeBtn:hover {
+  background: #0056b3;
+}
+
+/* ----------------- Output Boxes ----------------- */
+.output-section {
+  background: var(--color-box);
+  padding: 1rem 1rem 1rem 1.3rem; /* extra left padding */
+  border-radius: var(--radius);
+  min-height: 200px;
+  text-align: left;
+}
+
+
+.output-section h2 {
+  margin-bottom: 0.75rem;
+}
+
+/* Loading + Error */
+#loading {
+  background: #e0f7fa;
+  color: #00796b;
+  font-style: italic;
+  text-align: center;
+}
+
+#loading #progressDot {
+  animation: blink 1s infinite;
+}
+
+#error {
+  background: #d32f2f;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+}
+
+/* ----------------- Paste Area ----------------- */
+#pasteArea {
+  border: 2px dashed #ccc;
+  padding: 1.25rem;
+  text-align: center;
+  background-color: #f0f0f0;
+  min-height: 150px;
+  border-radius: var(--radius);
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+#pasteArea:focus,
+#pasteArea.active {
+  border-color: var(--color-primary);
+  background-color: var(--color-bg);
+}
+
+/* ----------------- Nutrition Chart ----------------- */
+#nutrition {
+  text-align: center;
+}
+
+#nutritionChart {
+  max-width: 100%;
+  height: auto !important;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+/* ----------------- Responsive ----------------- */
+@media (max-width: 768px) {
+  .nav-links ul {
+    gap: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .nav-links ul {
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 60%;
+    padding: 1rem;
+    border-radius: 0 0 0 1rem;
+    display: none; /* future: JS toggle */
+  }
+}
+
+@keyframes blink {
+  50% { opacity: 0.5; }
+}

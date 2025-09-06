@@ -1,111 +1,114 @@
 const uploadInput = document.getElementById('uploadInput');
-const preview = document.getElementById('preview');
-const pasteArea = document.getElementById('pasteArea');
-const generateBtn = document.getElementById('generateBtn');
-const tipsOutput = document.getElementById('tipsOutput');
-const manualInput = document.getElementById('manualInput');
+    const preview = document.getElementById('preview');
+    const manualInput = document.getElementById('manualInput');
+    const generateBtn = document.getElementById('generateBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const tipsOutput = document.getElementById('tipsOutput');
+    let currentImageData = null;
 
-// Note: API key should be moved to a backend server for security
-const API_KEY = 'AIzaSyDsFojbwdTt2SxfgNXc1ct30qAf6tq0O_s'; // Replace with backend endpoint
-const { GoogleGenerativeAI } = window.GoogleGenerativeAI;
-const genAI = new GoogleGenerativeAI(API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    // 👉 Gemini API function
+    async function generateTips(ingredients, imageData) {
+      const apiKey = "AIzaSyDsFojbwdTt2SxfgNXc1ct30qAf6tq0O_s"; // 🔑 Replace with your Gemini API key  :-  AIzaSyDsFojbwdTt2SxfgNXc1ct30qAf6tq0O_s
 
-async function generateTips(ingredients, imageData, mimeType = 'image/png') {
-    const prompt = `Provide practical tips for storing and managing food waste for the following ingredients: ${ingredients}. If an image is provided, analyze it to identify visible ingredients and combine them with the provided list, prioritizing unique ingredients. Current date and time: 02:56 AM IST on Sunday, September 07, 2025. Return tips as a numbered list.`;
-    const requestOptions = {
-        temperature: 0.7,
-        maxOutputTokens: 500,
-    };
+      let prompt = `I have these ingredients: ${ingredients}.
+                Give me clear, practical 10 useful tips to store them longer and reduce food waste no single extra text .`;
 
-    try {
-        const response = imageData
-            ? await model.generateContent([prompt, { inlineData: { data: imageData, mimeType } }], requestOptions)
-            : await model.generateContent(prompt, requestOptions);
-        return response.candidates[0].content.parts[0].text;
-    } catch (error) {
-        if (error.message.includes('quota')) {
-            return 'Error: API quota exceeded. Please try again later.';
-        } else if (error.message.includes('invalid')) {
-            return 'Error: Invalid input or image format.';
+      if (imageData) {
+        prompt += " (An image of the ingredients was also provided.)";
+      }
+
+      const response = await fetch(
+        ` https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }]
+          })
         }
-        return `Error: ${error.message}`;
+      );
+
+      const data = await response.json();
+      console.log("Gemini raw response:", data);
+
+      // ✅ safer parsing
+      let tipsText =
+        data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        data?.candidates?.[0]?.output ||
+        "No tips found.";
+
+      // ✅ cleanup into array
+      let tips = tipsText
+        .split(/\n|•|-|\d\./)
+        .map(t => t.trim())
+        .filter(t => t.length > 2);
+
+      return tips.length ? tips : [tipsText];
     }
-}
 
-// Handle file upload
-uploadInput.addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        if (file.size > 5 * 1024 * 1024) {
-            tipsOutput.innerHTML = '<p>Error: Image size exceeds 5MB.</p>';
-            tipsOutput.style.display = 'block';
-            return;
-        }
+    // File upload
+    uploadInput.addEventListener('change', e => {
+      const file = e.target.files[0];
+      const span = uploadInput.parentElement.querySelector('span');
+      if (file) {
         const reader = new FileReader();
-        reader.onload = function(event) {
-            preview.src = event.target.result;
-            preview.style.display = 'block';
+        reader.onload = ev => {
+          preview.src = ev.target.result;
+          preview.style.display = 'block';
+          currentImageData = ev.target.result;
+          span.textContent = file.name;
         };
         reader.readAsDataURL(file);
+      } else {
+        span.textContent = 'No file chosen';
+        preview.style.display = 'none';
+        currentImageData = null;
+      }
+    });
+
+    // Generate tips button
+    generateBtn.addEventListener('click', async () => {
+      const manualText = manualInput.value.trim();
+      if (!manualText && !currentImageData) {
+        showError("Please enter ingredients or upload an image.");
+        return;
+      }
+      generateBtn.disabled = true;
+      generateBtn.innerHTML = "⏳ Generating...";
+      tipsOutput.style.display = "block";
+      tipsOutput.innerHTML = '<div class="loading">Asking Gemini AI...</div>';
+
+      try {
+        const tips = await generateTips(manualText, currentImageData);
+        let output = "<h3>💡 Food Storage & Waste Reduction Tips</h3><ol>";
+        tips.forEach(tip => (output += `<li>${tip}</li>`));
+        output += "</ol>";
+        tipsOutput.innerHTML = output;
+      } catch (err) {
+        console.error(err);
+        showError("Error fetching tips from Gemini API.");
+      } finally {
+        generateBtn.disabled = false;
+        generateBtn.innerHTML = "✨ Generate Tips";
+      }
+    });
+
+    // Clear button
+    clearBtn.addEventListener('click', () => {
+      manualInput.value = "";
+      uploadInput.value = "";
+      preview.src = "";
+      preview.style.display = "none";
+      tipsOutput.innerHTML = "";
+      tipsOutput.style.display = "none";
+      currentImageData = null;
+    });
+
+    // Messages
+    function showError(msg) {
+      const div = document.createElement("div");
+      div.className = "error";
+      div.innerText = "⚠ " + msg;
+      document.querySelector(".header").insertAdjacentElement("afterend", div);
+      setTimeout(() => div.remove(), 4000);
     }
-    const span = this.nextElementSibling.nextElementSibling;
-    span.textContent = file ? file.name : 'No file chosen';
-});
-
-// Handle paste event
-pasteArea.addEventListener('paste', function(e) {
-    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
-    for (let item of items) {
-        if (item.type.indexOf('image') === 0) {
-            const blob = item.getAsFile();
-            if (blob.size > 5 * 1024 * 1024) {
-                tipsOutput.innerHTML = '<p>Error: Image size exceeds 5MB.</p>';
-                tipsOutput.style.display = 'block';
-                return;
-            }
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                preview.src = event.target.result;
-                preview.style.display = 'block';
-                pasteArea.innerHTML = '';
-            };
-            reader.readAsDataURL(blob);
-            break;
-        }
-    }
-});
-
-// Generate tips button
-generateBtn.addEventListener('click', async () => {
-    tipsOutput.style.display = 'block';
-    tipsOutput.innerHTML = '<p class="loading">Generating tips...</p>';
-
-    const manualText = manualInput.value.trim();
-    const imageData = preview.src ? preview.src.split(',')[1] : null;
-    const mimeType = uploadInput.files[0]?.type || 'image/png'; // Dynamic MIME type
-
-    try {
-        const tips = await generateTips(manualText, imageData, mimeType);
-        if (/^\d+\./.test(tips)) {
-            tipsOutput.innerHTML = tips.split('\n').map(line => `<p>${line}</p>`).filter(line => line.trim()).join('');
-        } else {
-            tipsOutput.innerHTML = `<p>${tips}</p>`;
-        }
-    } catch (error) {
-        tipsOutput.innerHTML = '<p>Error generating tips. Please try again.</p>';
-    }
-});
-
-// Optional: Add clear button in HTML
-// <button id="clearBtn">Clear</button>
-document.getElementById('clearBtn')?.addEventListener('click', () => {
-    manualInput.value = '';
-    uploadInput.value = '';
-    preview.src = '';
-    preview.style.display = 'none';
-    pasteArea.innerHTML = 'Click here and paste an image (Ctrl+V)';
-    tipsOutput.innerHTML = '';
-    tipsOutput.style.display = 'none';
-    document.querySelector('.file-upload span').textContent = 'No file chosen';
-});

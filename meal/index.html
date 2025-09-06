@@ -4,20 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indian Recipe Generator</title>
+    <title>Meal Generator</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+
+    <header class="navbar">
+        <div class="logo"><img class="imglogo" src="logos.png" alt=""></div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="..main.html" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+    </header>
+    
     <div class="container">
         <div style="grid-area: search;">
-        <h1>🍲 Indian Recipe Generator</h1>
-        <div class="search-bar">
-            <input type="text" id="foodInput" placeholder="Enter a dish (e.g. Biryani)" aria-label="Enter dish name">
-            <button onclick="getRecipe()" aria-label="Get recipe and nutrition">Get Recipe & Nutrition</button>
+            <h1>🍲 <b>Meal Generator</b></h1>
+            <div class="search-bar">
+                <input type="text" id="foodInput" placeholder="Enter a dish (e.g. Biryani)"
+                    aria-label="Enter dish name">
+                <button onclick="getRecipe()" aria-label="Get recipe and nutrition">Get Recipe & Nutrition</button>
+            </div>
         </div>
-    </div>
 
         <div id="ingredients" class="box">
             <h2>🥘 Ingredients</h2>

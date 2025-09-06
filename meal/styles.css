@@ -1,25 +1,95 @@
+/* Modern Navbar Styles */
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #ff914d, #ff5e62);  
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  height: 40px;
+  width:96%;
+  z-index: 1000;
+}
+
+ 
+.imglogo{
+  width: 115px;
+  height: auto;
+  border: 3px solid rgb(224, 50, 19);
+  border-radius: 10px;
+  position: relative;
+  top: 2px; 
+}
+
+
+
+
+/* Navigation Links kkk*/
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-links ul li a {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+.nav-links ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -8px;
+  left: 0;
+  background: linear-gradient(90deg,#ebe5e2,#ffae70);
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+.nav-links ul li a:hover, .nav-links ul li a.active {
+  color: #fff;
+  
+}
+.nav-links ul li a:hover::after, .nav-links ul li a.active::after {
+  width: 100%;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: #f8f8f8;
-    padding: 20px;
+    background-color: #FFF5E1; 
+    padding: 0px;
+    margin: 0px;
 }
 
 .container {
-    max-width: 1000px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto auto auto auto;
-    gap: 15px;
-    grid-template-areas:
-        "search search"
-        "ingredients steps"
-        "image nutrition"
-        "waste waste";
+  margin-top: 80px;
+  max-width: 1000px;
+  margin-bottom: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 3px solid orange;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  grid-template-areas:
+    "search search"
+    "ingredients steps"
+    "image nutrition"
+    "waste waste";
 }
 
 /* Adjust grid columns for image and nutrition to be equal */
@@ -74,7 +144,8 @@ button {
     border: none;
     border-radius: 6px;
     font-size: 16px;
-    background: #d35400;
+    /* background: #d35400; */
+     background: linear-gradient(135deg, #ff914d, #ff5e62);
     color: white;
     cursor: pointer;
     white-space: nowrap;
@@ -82,7 +153,7 @@ button {
 }
 
 button:hover:not(:disabled) {
-    background: #e67e22;
+     background: linear-gradient(135deg, #e0996d, #f86d36);
 }
 
 button:disabled {
@@ -92,14 +163,18 @@ button:disabled {
 
 /* Recipe boxes */
 .box {
-    background: #eef6f9;
+    
+    background: #FFF8F0;   
+    border: 2px solid #FF914D;
     padding: 15px;
     border-radius: 8px;
     min-height: 200px;
 }
 
+
 #ingredients {
     grid-area: ingredients;
+    
 }
 
 #steps {
@@ -118,6 +193,41 @@ button:disabled {
 #waste {
     grid-area: waste;
 }
+
+
+/* #ingredients {
+    grid-area: ingredients;
+    background: url("../img/ingrid.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#steps {
+    grid-area: steps;
+    background: url("../img/cookstep.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#image {
+    grid-area: image;
+    text-align: center;
+    background: url("../img/dish.jpg");
+    background-size: cover;
+}
+
+#nutrition {
+    grid-area: nutrition;
+    background: url("https://www.transparenttextures.com/patterns/subtle-dots.png");
+    background-size: cover;
+}
+
+#waste {
+    grid-area: waste;
+    background: url("../img/waste.jpg");
+    background-size: cover;
+} */
+
 
 canvas {
     max-width: 100%;

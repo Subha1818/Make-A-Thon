@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+.section {
+    margin-bottom: 20px;
+}
+.label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+.file-upload {
+    padding: 10px;
+    background-color: #e1e8f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+.file-upload input {
+    display: none;
+}
+.file-upload button {
+    background-color: #87ceeb;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+}
+.file-upload button:hover {
+    background-color: #76b9d3;
+}
+.file-upload span {
+    margin-left: 10px;
+    color: #666;
+}
+.paste-area {
+    padding: 20px;
+    background-color: #e1e8f0;
+    border: 1px dashed #999;
+    border-radius: 4px;
+    text-align: center;
+    color: #666;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.paste-area:focus {
+    outline: none;
+    border-color: #87ceeb;
+}
+#preview {
+    max-width: 100%;
+    display: none;
+    margin-top: 10px;
+}
+.generate-btn {
+    background-color: #87ceeb;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    width: 100%;
+    font-size: 16px;
+}
+.generate-btn:hover {
+    background-color: #76b9d3;
+}
+#tipsOutput {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    display: none;
+}
+#clearBtn {
+    background-color: #ff6b6b;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+#clearBtn:hover {
+    background-color: #e55a5a;
+}
+.loading::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #87ceeb;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

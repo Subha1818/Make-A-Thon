@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Recipe Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div style="grid-area: search;">
+        <h1>🍲 Indian Recipe Generator</h1>
+        <div class="search-bar">
+            <input type="text" id="foodInput" placeholder="Enter a dish (e.g. Biryani)" aria-label="Enter dish name">
+            <button onclick="getRecipe()" aria-label="Get recipe and nutrition">Get Recipe & Nutrition</button>
+        </div>
+    </div>
+
+        <div id="ingredients" class="box">
+            <h2>🥘 Ingredients</h2>
+            <ul id="ingredientsList"></ul>
+        </div>
+
+        <div id="steps" class="box">
+            <h2>🍽 Cooking Steps</h2>
+            <ol id="stepsList"></ol>
+        </div>
+
+        <div id="image" class="box">
+            <h2>📸 Dish Image</h2>
+            <img id="dishImage" alt="Dish Image" style="max-width:100%; height:auto;">
+        </div>
+
+        <div id="nutrition" class="box">
+            <h2>🥗 Nutrition</h2>
+            <canvas id="nutritionChart" aria-label="Nutrition chart"></canvas>
+        </div>
+
+        <div id="waste" class="box">
+            <h2>♻️ Waste Management Tips</h2>
+            <ul id="wasteList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="config.js"></script>
+</body>
+
+</html>

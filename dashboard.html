@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Kitchen Management Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff, #e3cbbf);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .user-section {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transform: translateY(0);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .user-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ff914d;
+            transition: transform 0.3s ease;
+        }
+
+        .user-photo:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .user-details h2 {
+            margin: 0;
+            color: #ff914d;
+            font-size: 1.6em;
+        }
+
+        .user-details p {
+            margin: 8px 0;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .welcome-message p {
+            margin: 10px 0;
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .requirements-list {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .requirements-list:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .requirements-list h3 {
+            margin: 0 0 15px;
+            color: #ff914d;
+            font-size: 1.6em;
+        }
+
+        .requirements-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirements-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+
+        .requirements-list li:hover {
+            background: #fff8f0;
+        }
+
+        .requirements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .requirements-list li::before {
+            content: '🛒';
+            margin-right: 8px;
+        }
+
+        .add-item-section {
+            background: #fff8f0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .add-item-section input {
+            padding: 8px;
+            border: 1px solid #ff914d;
+            border-radius: 5px;
+            font-size: 0.9em;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .add-item-section input:focus {
+            outline: none;
+            border-color: #ffae70;
+            box-shadow: 0 0 5px rgba(255, 145, 77, 0.5);
+        }
+
+        .add-item-section button {
+            padding: 8px 16px;
+            background: linear-gradient(45deg, #ff914d, #ffae70);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .add-item-section button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .dashboard:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .graph-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto 20px;
+            padding: 15px;
+            background: #fff8f0;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .graph-container::before {
+            content: '📊';
+            font-size: 1.5em;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            opacity: 0.3;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: linear-gradient(45deg, #ffae70, #ff914d);
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 160px;
+            color: #fff;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+        }
+
+        .stat-card:hover {
+            transform: perspective(1000px) rotateY(10deg);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.1em;
+        }
+
+        .stat-card p {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .stat-card.waste::before {
+            content: '♻️';
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-card.savings::before {
+            content: '💰';
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-card.carbon::before {
+            content: '🌍';
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            color: #ff914d;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 1.6em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .user-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .user-photo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .user-details h2 {
+                font-size: 1.4em;
+            }
+
+            .user-details p,
+            .welcome-message p {
+                font-size: 0.9em;
+            }
+
+            .requirements-list {
+                padding: 15px;
+            }
+
+            .requirements-list h3 {
+                font-size: 1.4em;
+            }
+
+            .requirements-list li {
+                font-size: 0.9em;
+                padding: 10px 0;
+            }
+
+            .add-item-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .add-item-section input,
+            .add-item-section button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .dashboard {
+                padding: 15px;
+            }
+
+            .dashboard h2 {
+                font-size: 1.4em;
+            }
+
+            .graph-container {
+                padding: 10px;
+            }
+
+            .graph-container::before {
+                font-size: 1.2em;
+            }
+
+            .stat-card {
+                min-width: 140px;
+                padding: 12px;
+            }
+
+            .stat-card h3 {
+                font-size: 1em;
+            }
+
+            .stat-card p {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .user-photo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .user-details h2 {
+                font-size: 1.2em;
+            }
+
+            .user-details p,
+            .welcome-message p {
+                font-size: 0.8em;
+            }
+
+            .requirements-list h3 {
+                font-size: 1.2em;
+            }
+
+            .requirements-list li {
+                font-size: 0.8em;
+            }
+
+            .add-item-section input {
+                font-size: 0.8em;
+            }
+
+            .add-item-section button {
+                font-size: 0.8em;
+                padding: 8px;
+            }
+
+            .dashboard h2 {
+                font-size: 1.2em;
+            }
+
+            .stat-card {
+                min-width: 120px;
+                padding: 10px;
+            }
+
+            .stat-card h3 {
+                font-size: 0.9em;
+            }
+
+            .stat-card p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="user-section">
+            <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" alt="User Photo" class="user-photo">
+            <div class="user-details">
+                <h2>John Doe</h2>
+                <p>Email: john.doe@example.com</p>
+                <div class="welcome-message">
+                    <p>Hello, John! Welcome to your Smart Kitchen Dashboard!</p>
+                    <p>Track your expenses, manage waste, and reduce your carbon footprint with ease.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="requirements-list">
+            <h3>Monthly Grocery Requirements</h3>
+            <div class="add-item-section">
+                <input type="text" id="itemName" placeholder="Item Name (e.g., Atta 5kg)" />
+                <input type="text" id="itemPrice" placeholder="Price (e.g., ₹100)" />
+                <button onclick="addItem()">Add Item</button>
+            </div>
+            <ul id="groceryList">
+                <li><span>Atta (5kg)</span><span>₹100</span></li>
+                <li><span>Oil (2L)</span><span>₹200</span></li>
+                <li><span>Rice (5kg)</span><span>₹150</span></li>
+                <li><span>Dal (2kg)</span><span>₹120</span></li>
+                <li><span>Sugar (1kg)</span><span>₹50</span></li>
+                <li><span>Salt (1kg)</span><span>₹20</span></li>
+                <li><span>Milk Powder (500g)</span><span>₹180</span></li>
+                <li><span>Tea Leaves (250g)</span><span>₹80</span></li>
+                <li><span>Spices (200g)</span><span>₹60</span></li>
+                <li><span>Soap (4 units)</span><span>₹100</span></li>
+            </ul>
+        </div>
+
+        <div class="dashboard">
+            <h2>Monthly Expenses Overview</h2>
+            <div class="graph-container">
+                <canvas id="expensesChart"></canvas>
+            </div>
+            <div class="stats">
+                <div class="stat-card waste">
+                    <h3>Waste Reused</h3>
+                    <p>15 kg</p>
+                </div>
+                <div class="stat-card savings">
+                    <h3>Money Saved</h3>
+                    <p>₹120</p>
+                </div>
+                <div class="stat-card carbon">
+                    <h3>Carbon Footprint Reduced</h3>
+                    <p>10 kg CO₂</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to add a new item to the grocery list
+        function addItem() {
+            const itemName = document.getElementById('itemName').value.trim();
+            const itemPrice = document.getElementById('itemPrice').value.trim();
+            if (itemName && itemPrice) {
+                const list = document.getElementById('groceryList');
+                const li = document.createElement('li');
+                li.innerHTML = `<span>${itemName}</span><span>${itemPrice}</span>`;
+                list.appendChild(li);
+                document.getElementById('itemName').value = '';
+                document.getElementById('itemPrice').value = '';
+            } else {
+                alert('Please enter both item name and price.');
+            }
+        }
+
+        // Sample data for the graph (replace with real data from backend)
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'];
+        const expenses = [300, 280, 320, 290, 310, 270, 295, 305, 285];
+
+        const ctx = document.getElementById('expensesChart').getContext('2d');
+        const expensesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Monthly Expenses (₹)',
+                    data: expenses,
+                    borderColor: '#ff914d',
+                    backgroundColor: 'rgba(255, 145, 77, 0.3)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#eee' }
+                    },
+                    x: {
+                        grid: { color: '#eee' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#ff914d'
+                        }
+                    }
+                },
+                animation: {
+                    duration: 1500,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

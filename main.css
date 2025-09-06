@@ -20,20 +20,28 @@ body {
   background: rgba(255, 145, 77, 0.85); /* glassy orange */
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.10);
-  border-radius: 0 0 24px 24px;
+  height: 40px;
+  /* border-radius: 0 0 24px 24px; */
   z-index: 1000;
 }
 
 /* Logo */
-.logo {
+/* .logo{
   font-size: 2rem;
   font-weight: 900;
   color: #fff;
   letter-spacing: 2px;
   text-shadow: 0 2px 8px rgba(255,145,77,0.20);
+} */
+.imglogo{
+  width: 115px;
+  height: auto;
+  border: 3px solid rgb(224, 50, 19);
+  border-radius: 10px;
+  position: relative;
+  top: 3px;
 }
-
-/* Navigation Links */
+/* Navigation Links kkk*/
 .nav-links ul {
   list-style: none;
   display: flex;

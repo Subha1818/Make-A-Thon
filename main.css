@@ -58,12 +58,13 @@ body {
   height: 3px;
   bottom: -8px;
   left: 0;
-  background: linear-gradient(90deg,#ff914d,#ffae70);
+  background: linear-gradient(90deg,#ebe5e2,#ffae70);
   border-radius: 2px;
   transition: width 0.3s;
 }
 .nav-links ul li a:hover, .nav-links ul li a.active {
-  color: #333;
+  color: #fff;
+  
 }
 .nav-links ul li a:hover::after, .nav-links ul li a.active::after {
   width: 100%;
@@ -690,10 +691,6 @@ footer {
 @media (max-width: 500px) {
   .modal-content { max-width: 99%; }
 }
-
-
-
-
 
 
 /* Animations */

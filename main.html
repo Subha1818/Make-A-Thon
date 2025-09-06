@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Ranna Ghar</title>
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">🍲 Smart Ranna Ghar</div>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-buttons">
+      <button class="login-btn" onclick="openModal('loginModal')">Login</button>
+      <button class="login-btn" onclick="openModal('signupModal')">Sign Up</button>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Cook Smart. Save More. Live Better.</h1>
+      <p>AI-powered recipes, grocery management, and meal planning for every home chef. Your smart kitchen partner!</p>
+      <button class="btn" onclick="openDashboard()">My Dashboard</button>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="features">
+    <h2>Our Smart Features</h2>
+    <div class="feature-cards">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p class="title">Smart Recipe Generator</p>
+          </div>
+          <div class="flip-card-back">
+            <p>Scan ingredients & generate instant recipes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p class="title">Meal Planner</p>
+          </div>
+          <div class="flip-card-back">
+            <p>Get weekly plans tailored to your needs.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p class="title">Grocery Manager</p>
+          </div>
+          <div class="flip-card-back">
+            <p>Track expiry dates & reduce waste.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p class="title">Smart Grocery Planning</p>
+          </div>
+          <div class="flip-card-back">
+            <p>Auto shopping lists based on inventory.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-us">
+    <h2>Why Choose Smart Ranna Ghar?</h2>
+    <div class="why-grid">
+      <div class="why-card">💰 Save money with smart shopping</div>
+      <div class="why-card">🌍 Reduce food waste & carbon footprint</div>
+      <div class="why-card">🥗 Plan meals with nutrition info</div>
+      <div class="why-card">📱 Access your kitchen from anywhere</div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial">“Smart Ranna Ghar helped me save ₹2000/month on groceries!”</div>
+      <div class="testimonial">“No more forgetting expiry dates – my kitchen is always fresh.”</div>
+      <div class="testimonial">“Meal planning has never been this easy and fun!”</div>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section id="about" class="how-it-works">
+    <h2>How It Works</h2>
+    <p>📸 Scan groceries → 🥗 Plan meals → 🛒 Generate shopping list → 🍳 Cook smart.  
+    Save time, money, and reduce food waste while living sustainably.</p>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Ready to make your kitchen smart?</h2>
+    <button class="btn" onclick="openModal('signupModal')">Get Started</button>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Email: support@rannaghar.com | Phone: +91-9876543210</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Smart Ranna Ghar. All rights reserved.</p>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>Login</h2>
+      <input type="email" placeholder="Email" id="loginEmail" required>
+      <input type="password" placeholder="Password" id="loginPassword" required>
+      <button class="btn" onclick="handleLogin()">Login</button>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('signupModal')">&times;</span>
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Name" id="signupName" required>
+      <input type="email" placeholder="Email" id="signupEmail" required>
+      <input type="password" placeholder="Password" id="signupPassword" required>
+      <button class="btn" onclick="handleSignup()">Sign Up</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

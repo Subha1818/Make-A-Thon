@@ -76,7 +76,7 @@
     generateBtn.disabled = true;
     generateBtn.innerHTML = "⏳ Generating...";
     tipsOutput.style.display = "block";
-    tipsOutput.innerHTML = '<div class="loading">Asking Gemini AI...</div>';
+    tipsOutput.innerHTML = '<div class="loading">Fetching Data...</div>';
 
     try {
       const tips = await generateTips(manualText, currentImageData);

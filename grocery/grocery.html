@@ -2,113 +2,121 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Grocery Planner</title>
-    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="grocery.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Grocery Planner</title>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="grocery.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🛒 Smart Grocery Planner</h1>
-            <p>Intelligent inventory tracking with automatic shopping list generation and price comparison. </p>
-        </div>
 
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number" id="totalItems">0</div>
-                <div class="stat-label">Total Items</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="lowStockItems">0</div>
-                <div class="stat-label">Low Stock</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="shoppingListCount">0</div>
-                <div class="stat-label">Shopping List</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="estimatedCost">₹0</div>
-                <div class="stat-label">Estimated Cost</div>
-            </div>
-        </div>
+  <!-- ✅ Navbar -->
+  <header class="navbar">
+    <div class="logo"><img class="imglogo" src="../img/logo.png" alt="logo"></div>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-buttons">
+      <button class="login-btn" onclick="openModal('loginModal')">Login</button>
+      <button class="signup-btn" onclick="openModal('signupModal')">Sign Up</button>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </header>
 
-        <div class="main-content">
-            <div class="section">
-                <h2>📦 Add Inventory Item</h2>
-                <div class="input-group">
-                    <label>Item Name</label>
-                    <input type="text" id="itemName" placeholder="e.g., Rice, Milk, Tomatoes">
-                </div>
-                <div class="input-group">
-                    <label>Current Quantity</label>
-                    <input type="number" id="currentQuantity" placeholder="e.g., 2" min="0">
-                </div>
-                <div class="input-group">
-                    <label>Minimum Threshold</label>
-                    <input type="number" id="minThreshold" placeholder="e.g., 1" min="1">
-                </div>
-                <div class="input-group">
-                    <label>Unit</label>
-                    <select id="unit">
-                        <option value="kg">Kg</option>
-                        <option value="grams">Grams</option>
-                        <option value="liters">Liters</option>
-                        <option value="pieces">Pieces</option>
-                        <option value="packets">Packets</option>
-                        <option value="bottles">Bottles</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Expiry Date</label>
-                    <input type="date" id="expiryDate">
-                </div>
-                <button class="btn" onclick="addInventoryItem()">Add Item</button>
-
-                <button class="btn" onclick="startScanner()"
-                    style="margin-top: 10px; background: linear-gradient(135deg, #16a085 0%, #27ae60 100%);">Scan
-                    Item</button>
-                <div id="reader"></div>
-            </div>
-
-            <div class="section">
-                <h2>📋 Current Inventory</h2>
-                <div id="inventoryList">
-                    <p style="color: #666; text-align: center;">No items in inventory. Add some items to get started!
-                    </p>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>🛍️ Auto-Generated Shopping List</h2>
-                <div id="shoppingList">
-                    <p style="color: #666; text-align: center;">Shopping list will appear when items are low in stock.
-                    </p>
-                </div>
-                <button class="btn" onclick="generateOptimalShoppingList()" style="margin-top: 15px;">Generate Optimal
-                    List</button>
-            </div>
-
-
-
-
-            <div class="section search-section">
-                <h2>🔍 Price Comparison Search</h2>
-                <input type="text" class="search-input" id="searchItem"
-                    placeholder="Search for any grocery item to compare prices...">
-                <button class="searchbtn" onclick="searchPrices()"
-                    style="background: rgba(255,255,255,0.2); margin-top: 0;">Search Prices</button>
-
-                <div id="searchResults" class="search-results"></div>
-            </div>
-        </div>
+  <!-- ✅ Grocery Section -->
+  <div class="container">
+    <div class="header">
+      <h1>🛒 Smart Grocery Planner</h1>
+      <p>Intelligent inventory tracking with automatic shopping list generation and price comparison.</p>
     </div>
 
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="totalItems">0</div>
+        <div class="stat-label">Total Items</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="lowStockItems">0</div>
+        <div class="stat-label">Low Stock</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="shoppingListCount">0</div>
+        <div class="stat-label">Shopping List</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="estimatedCost">₹0</div>
+        <div class="stat-label">Estimated Cost</div>
+      </div>
+    </div>
 
+    <!-- Add Item -->
+    <div class="section">
+      <h2>📦 Add Inventory Item</h2>
+      <div class="input-group">
+        <label>Item Name</label>
+        <input type="text" id="itemName" placeholder="e.g., Rice, Milk, Tomatoes">
+      </div>
+      <div class="input-group">
+        <label>Current Quantity</label>
+        <input type="number" id="currentQuantity" placeholder="e.g., 2" min="0">
+      </div>
+      <div class="input-group">
+        <label>Minimum Threshold</label>
+        <input type="number" id="minThreshold" placeholder="e.g., 1" min="1">
+      </div>
+      <div class="input-group">
+        <label>Unit</label>
+        <select id="unit">
+          <option value="kg">Kg</option>
+          <option value="grams">Grams</option>
+          <option value="liters">Liters</option>
+          <option value="pieces">Pieces</option>
+          <option value="packets">Packets</option>
+          <option value="bottles">Bottles</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Expiry Date</label>
+        <input type="date" id="expiryDate">
+      </div>
+      <button class="btn" onclick="addInventoryItem()">Add Item</button>
+      <button class="btn scan-btn" onclick="startScanner()">Scan Item</button>
+      <div id="reader"></div>
+    </div>
+
+    <!-- Inventory -->
+    <div class="section">
+      <h2>📋 Current Inventory</h2>
+      <div id="inventoryList">
+        <p class="empty-text">No items in inventory. Add some items to get started!</p>
+      </div>
+    </div>
+
+    <!-- Shopping List -->
+    <div class="section">
+      <h2>🛍️ Auto-Generated Shopping List</h2>
+      <div id="shoppingList">
+        <p class="empty-text">Shopping list will appear when items are low in stock.</p>
+      </div>
+      <button class="btn" onclick="generateOptimalShoppingList()">Generate Optimal List</button>
+    </div>
+
+    <!-- Price Comparison -->
+    <div class="section search-section">
+      <h2>🔍 Price Comparison Search</h2>
+      <input type="text" class="search-input" id="searchItem" placeholder="Search for any grocery item to compare prices...">
+      <button class="searchbtn" onclick="searchPrices()">Search Prices</button>
+      <div id="searchResults" class="search-results"></div>
+    </div>
+  </div>
+
+  <script type="module" src="grocery.js"></script>
 </body>
-<script type="module" src="grocery.js"></script>
-
 </html>

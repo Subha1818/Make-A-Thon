@@ -580,3 +580,14 @@ document.addEventListener('keypress', function (e) {
         addMonthlyRequirement();
     }
 });
+// Expose functions for inline HTML usage
+window.addInventoryItem = addInventoryItem;
+window.increaseQuantity = increaseQuantity;
+window.decreaseQuantity = decreaseQuantity;
+window.deleteInventoryItem = deleteInventoryItem;
+window.addMonthlyRequirement = addMonthlyRequirement;
+window.deleteMonthlyRequirement = deleteMonthlyRequirement;
+window.searchPrices = searchPrices;
+window.generateOptimalShoppingList = generateOptimalShoppingList;
+window.startScanner = startScanner;
+

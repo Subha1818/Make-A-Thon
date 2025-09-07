@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +7,39 @@
   <link rel="stylesheet" href="main.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
   <!-- Navbar -->
 
-  <header class="navbar">
-    <div class="logo"><img class="imglogo" src="img/logo.png" alt=""></div>
-    <nav class="nav-links">
-      <ul>
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="nav-buttons">
-      <button class="login-btn" onclick="openModal('loginModal')">Login</button>
-      <button class="signup-btn" onclick="openModal('signupModal')">Sign Up</button>
-    </div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  </header>
+<header class="navbar">
+  <div class="logo"><img class="imglogo" src="img/logo.png" alt=""></div>
+  <nav class="nav-links">
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-buttons">
+    <button class="login-btn" onclick="openModal('loginModal')">Login</button>
+    <button class="signup-btn" onclick="openModal('signupModal')">Sign Up</button>
+  </div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</header>
 
 
   <!-- Hero Section -->
+  
+<section id="home" class="hero">
 
+<<<<<<< HEAD
   <section id="home" class="hero">
 
     <!-- <div class="hero-slider">
+=======
+  <!-- <div class="hero-slider">
+>>>>>>> f9ade98520593d22d49afef3821ebe8e1f3670dd
     <div class="hero-slide"><img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg" alt="Hero 1"></div>
     <div class="hero-slide"><img src="https://images.pexels.com/photos/1051399/pexels-photo-1051399.jpeg" alt="Hero 2"></div>
     <div class="hero-slide"><img src="https://images.pexels.com/photos/209540/pexels-photo-209540.jpeg" alt="Hero 3"></div>
@@ -55,19 +59,29 @@
       <div class="hero-slide"><img src="img/img5.jpeg" alt="Hero 5">
       </div>
     </div>
+<<<<<<< HEAD
     <div class="hero-content">
       <h1>Cook Smart. Save More. Live Better.</h1>
       <p>AI-powered recipes, grocery management, and meal planning for every home chef. Your smart kitchen partner!</p>
       <button class="btn" onclick="openDashboard()">My Dashboard</button>
     </div>
   </section>
+=======
+  <div class="hero-content">
+    <h1>Cook Smart. Save More. Live Better.</h1>
+    <p>AI-powered recipes, grocery management, and meal planning for every home chef. Your smart kitchen partner!</p>
+    <button class="btn" onclick="openDashboard()">My Dashboard</button>
+  </div>
+</section>
+>>>>>>> f9ade98520593d22d49afef3821ebe8e1f3670dd
 
 
   <!-- Features -->
-  <section id="features" class="features">
-    <h2>Our Smart Features</h2>
-    <div class="feature-cards">
+<section id="features" class="features">
+  <h2>Our Smart Features</h2>
+  <div class="feature-cards">
 
+<<<<<<< HEAD
       <!-- Smart Recipe Generator -->
       <a href="recipe generator/index.html" class="feature-link">
         <div class="flip-card">
@@ -80,10 +94,25 @@
               <p class="title">AI Generated Recipes</p>
               <p>Generate recipes instantly with your little bit ingredients</p>
             </div>
+=======
+    <!-- Smart Recipe Generator -->
+    <a href="recipe generator/index.html" class="feature-link">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p class="title">Smart Recipe Generator</p>
+            <p>Scan or paste images of ingredients</p>
+          </div>
+          <div class="flip-card-back">
+            <p class="title">AI Generated Recipes</p>
+            <p>Generate recipes instantly with your little bit ingredients</p>
+>>>>>>> f9ade98520593d22d49afef3821ebe8e1f3670dd
           </div>
         </div>
-      </a>
+      </div>
+    </a>
 
+<<<<<<< HEAD
       <!-- Meal Planner -->
       <a href="meal/index.html" class="feature-link">
         <div class="flip-card">
@@ -96,10 +125,25 @@
               <p class="title">Personalized Meal Plans</p>
               <p>Nutrition-based meal planning made easily</p>
             </div>
+=======
+    <!-- Meal Planner -->
+    <a href="meal/index.html" class="feature-link">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p class="title">AI-based Meal Planner</p>
+            <p>Weekly plans</p>
+          </div>
+          <div class="flip-card-back">
+            <p class="title">Personalized Meal Plans</p>
+            <p>Nutrition-based meal planning made easily</p>
+>>>>>>> f9ade98520593d22d49afef3821ebe8e1f3670dd
           </div>
         </div>
-      </a>
+      </div>
+    </a>
 
+<<<<<<< HEAD
       <!-- Grocery Manager -->
       <a href="grocery/grocery.html" class="feature-link">
         <div class="flip-card">
@@ -112,10 +156,25 @@
               <p class="title">Save More Eat More</p>
               <p>Get notified before groceries expire.</p>
             </div>
+=======
+    <!-- Grocery Manager -->
+    <a href="grocery.html" class="feature-link">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p class="title">Smart Grocery Manager</p>
+            <p>Expiry alerts, inventory tracking</p>
+          </div>
+          <div class="flip-card-back">
+            <p class="title">Save More Eat More</p>
+            <p>Get notified before groceries expire.</p>
+>>>>>>> f9ade98520593d22d49afef3821ebe8e1f3670dd
           </div>
         </div>
-      </a>
+      </div>
+    </a>
 
+<<<<<<< HEAD
       <!-- Smart Grocery Planning -->
       <a href="preservation/index.html" class="feature-link">
         <div class="flip-card">
@@ -128,83 +187,97 @@
               <p class="title">Preservation Tips</p>
               <p>Keep your fruits and vegetables fresh for longer with our expert tips.</p>
             </div>
+=======
+    <!-- Smart Grocery Planning -->
+    <a href="preservation/index.html" class="feature-link">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <p class="title">AI Generated Tips to Preserve</p>
+            <p>Tips to keep your groceries fresh</p>
+          </div>
+          <div class="flip-card-back">
+            <p class="title">Preservation Tips</p>
+            <p>Keep your fruits and vegetables fresh for longer with our expert tips.</p>
+>>>>>>> f9ade98520593d22d49afef3821ebe8e1f3670dd
           </div>
         </div>
-      </a>
+      </div>
+    </a>
 
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Detailed Feature Sections -->
-  <section class="feature-detail">
-    <div class="feature-text fadeInLeft">
-      <h2>Smart Recipe Generator</h2>
-      <p>Just scan any vegetable or ingredient and let our AI instantly generate creative, delicious recipes for you.
-        This feature not only saves time but also ensures that you never run out of cooking ideas.
-        Say goodbye to food waste by making the most of what’s already in your kitchen.</p>
-      <p>From simple home meals to exotic dishes, our AI gives you step-by-step cooking instructions,
-        helping you cook smarter every day.</p>
-    </div>
-    <div class="feature-image fadeInRight collage">
-      <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg" alt="Recipe 1">
-      <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg" alt="Recipe 2">
-      <img src="https://images.pexels.com/photos/1051399/pexels-photo-1051399.jpeg" alt="Recipe 3">
-      <img src="https://images.pexels.com/photos/209540/pexels-photo-209540.jpeg" alt="Recipe 4">
-    </div>
-  </section>
+<!-- Detailed Feature Sections -->
+<section class="feature-detail">
+  <div class="feature-text fadeInLeft">
+    <h2>Smart Recipe Generator</h2>
+    <p>Just scan any vegetable or ingredient and let our AI instantly generate creative, delicious recipes for you. 
+    This feature not only saves time but also ensures that you never run out of cooking ideas. 
+    Say goodbye to food waste by making the most of what’s already in your kitchen.</p>
+    <p>From simple home meals to exotic dishes, our AI gives you step-by-step cooking instructions, 
+    helping you cook smarter every day.</p>
+  </div>
+  <div class="feature-image fadeInRight collage">
+    <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg" alt="Recipe 1">
+    <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg" alt="Recipe 2">
+    <img src="https://images.pexels.com/photos/1051399/pexels-photo-1051399.jpeg" alt="Recipe 3">
+    <img src="https://images.pexels.com/photos/209540/pexels-photo-209540.jpeg" alt="Recipe 4">
+  </div>
+</section>
 
-  <section class="feature-detail reverse">
-    <div class="feature-text fadeInRight">
-      <h2>Meal Planner</h2>
-      <p>Plan your meals for the entire week effortlessly.
-        Whether you are a student, a working professional, or managing a family kitchen,
-        our AI-based planner gives you balanced meal ideas tailored to your preferences.</p>
-      <p>You’ll also get a detailed nutritional breakdown for every meal, so you can stay healthy
-        while enjoying the food you love.
-        Customize your diet to include your favorite dishes while keeping track of calories and nutrition.</p>
-    </div>
-    <div class="feature-image fadeInLeft collage">
-      <img src="https://images.pexels.com/photos/1051399/pexels-photo-1051399.jpeg" alt="Meal 1">
-      <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg" alt="Meal 2">
-      <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg" alt="Meal 3">
-      <img src="https://images.pexels.com/photos/6260921/pexels-photo-6260921.jpeg" alt="Meal 4">
-    </div>
-  </section>
+<section class="feature-detail reverse">
+  <div class="feature-text fadeInRight">
+    <h2>Meal Planner</h2>
+    <p>Plan your meals for the entire week effortlessly. 
+    Whether you are a student, a working professional, or managing a family kitchen, 
+    our AI-based planner gives you balanced meal ideas tailored to your preferences.</p>
+    <p>You’ll also get a detailed nutritional breakdown for every meal, so you can stay healthy 
+    while enjoying the food you love. 
+    Customize your diet to include your favorite dishes while keeping track of calories and nutrition.</p>
+  </div>
+  <div class="feature-image fadeInLeft collage">
+    <img src="https://images.pexels.com/photos/1051399/pexels-photo-1051399.jpeg" alt="Meal 1">
+    <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg" alt="Meal 2">
+    <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg" alt="Meal 3">
+    <img src="https://images.pexels.com/photos/6260921/pexels-photo-6260921.jpeg" alt="Meal 4">
+  </div>
+</section>
 
-  <section class="feature-detail">
-    <div class="feature-text fadeInLeft">
-      <h2>Grocery Manager</h2>
-      <p>Never let your groceries expire again!
-        Our smart system allows you to track every item you buy,
-        reminding you before the expiry date so you can use it in time.</p>
-      <p>This feature is perfect for reducing food waste and saving money.
-        You’ll get gentle reminders and recipe suggestions for items that are about to expire,
-        making sure nothing goes unused.</p>
-    </div>
-    <div class="feature-image fadeInRight collage">
-      <img src="https://images.pexels.com/photos/209540/pexels-photo-209540.jpeg" alt="Grocery 1">
-      <img src="https://images.pexels.com/photos/1051399/pexels-photo-1051399.jpeg" alt="Grocery 2">
-      <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg" alt="Grocery 3">
-      <img src="https://images.pexels.com/photos/6260921/pexels-photo-6260921.jpeg" alt="Grocery 4">
-    </div>
-  </section>
+<section class="feature-detail">
+  <div class="feature-text fadeInLeft">
+    <h2>Grocery Manager</h2>
+    <p>Never let your groceries expire again! 
+    Our smart system allows you to track every item you buy, 
+    reminding you before the expiry date so you can use it in time.</p>
+    <p>This feature is perfect for reducing food waste and saving money. 
+    You’ll get gentle reminders and recipe suggestions for items that are about to expire, 
+    making sure nothing goes unused.</p>
+  </div>
+  <div class="feature-image fadeInRight collage">
+    <img src="https://images.pexels.com/photos/209540/pexels-photo-209540.jpeg" alt="Grocery 1">
+    <img src="https://images.pexels.com/photos/1051399/pexels-photo-1051399.jpeg" alt="Grocery 2">
+    <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg" alt="Grocery 3">
+    <img src="https://images.pexels.com/photos/6260921/pexels-photo-6260921.jpeg" alt="Grocery 4">
+  </div>
+</section>
 
-  <section class="feature-detail reverse">
-    <div class="feature-text fadeInRight">
-      <h2>Smart Grocery Planning</h2>
-      <p>Our AI automatically generates smart shopping lists based on your current inventory.
-        Instead of guessing what to buy, the system makes sure you purchase only what’s needed,
-        saving both time and money.</p>
-      <p>With budget-friendly suggestions, you can plan your shopping efficiently and avoid unnecessary spending.
-        It’s like having a personal assistant that manages your kitchen essentials for you!</p>
-    </div>
-    <div class="feature-image fadeInLeft collage">
-      <img src="https://images.pexels.com/photos/6260921/pexels-photo-6260921.jpeg" alt="Planning 1">
-      <img src="https://images.pexels.com/photos/209540/pexels-photo-209540.jpeg" alt="Planning 2">
-      <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg" alt="Planning 3">
-      <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg" alt="Planning 4">
-    </div>
-  </section>
+<section class="feature-detail reverse">
+  <div class="feature-text fadeInRight">
+    <h2>Smart Grocery Planning</h2>
+    <p>Our AI automatically generates smart shopping lists based on your current inventory. 
+    Instead of guessing what to buy, the system makes sure you purchase only what’s needed, 
+    saving both time and money.</p>
+    <p>With budget-friendly suggestions, you can plan your shopping efficiently and avoid unnecessary spending. 
+    It’s like having a personal assistant that manages your kitchen essentials for you!</p>
+  </div>
+  <div class="feature-image fadeInLeft collage">
+    <img src="https://images.pexels.com/photos/6260921/pexels-photo-6260921.jpeg" alt="Planning 1">
+    <img src="https://images.pexels.com/photos/209540/pexels-photo-209540.jpeg" alt="Planning 2">
+    <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg" alt="Planning 3">
+    <img src="https://images.pexels.com/photos/2474658/pexels-photo-2474658.jpeg" alt="Planning 4">
+  </div>
+</section>
 
 
   <!-- Why Choose Us -->
@@ -231,8 +304,8 @@
   <!-- How it Works -->
   <section id="about" class="how-it-works">
     <h2>How It Works</h2>
-    <p>📸 Scan groceries → 🥗 Plan meals → 🛒 Generate shopping list → 🍳 Cook smart.
-      Save time, money, and reduce food waste while living sustainably.</p>
+    <p>📸 Scan groceries → 🥗 Plan meals → 🛒 Generate shopping list → 🍳 Cook smart.  
+    Save time, money, and reduce food waste while living sustainably.</p>
   </section>
 
   <!-- Call to Action -->
@@ -241,6 +314,7 @@
     <button class="btn" onclick="openModal('signupModal')">Get Started</button>
   </section>
 
+<<<<<<< HEAD
   <footer>
     <h1>©2025, Created with ❤ by TEAM PARALLAX</h1>
     <div class="box-icons">
@@ -251,6 +325,18 @@
       <a href="#"><i class='bx bxl-instagram'></i></a>
     </div>
   </footer>
+=======
+       <footer>
+            <h1>©2025, Created with ❤ by TEAM PARALLAX</h1>
+            <div class="box-icons">
+                <!--a href="#"><i class='bx bxl-discord-alt' ></i></a-->
+                <a href="#"><i class='bx bxl-youtube'></i></a>
+                <a href="#"><i class='bx bxl-github'></i></a>
+                <a href="#"><i class='bx bxl-linkedin-square'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </footer>
+>>>>>>> f9ade98520593d22d49afef3821ebe8e1f3670dd
 
   <!-- Footer -->
   <footer>
@@ -258,34 +344,33 @@
   </footer>
 
   <!-- Login Modal -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content modal-animate">
-      <span class="close" onclick="closeModal('loginModal')">&times;</span>
-      <h2>Login</h2>
-      <input type="email" placeholder="Email" id="loginEmail" required>
-      <input type="password" placeholder="Password" id="loginPassword" required>
-      <button class="btn" onclick="handleLogin()">Login</button>
-      <div class="modal-footer">
-        <span>No account?</span>
-        <button class="no-account-btn" onclick="switchModal()">Sign Up</button>
-      </div>
+<div id="loginModal" class="modal">
+  <div class="modal-content modal-animate">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h2>Login</h2>
+    <input type="email" placeholder="Email" id="loginEmail" required>
+    <input type="password" placeholder="Password" id="loginPassword" required>
+    <button class="btn" onclick="handleLogin()">Login</button>
+    <div class="modal-footer">
+      <span>No account?</span>
+      <button class="no-account-btn" onclick="switchModal()">Sign Up</button>
     </div>
   </div>
+</div>
 
-  <!-- Signup Modal -->
-  <div id="signupModal" class="modal">
-    <div class="modal-content modal-animate">
-      <span class="close" onclick="closeModal('signupModal')">&times;</span>
-      <h2>Sign Up</h2>
-      <input type="text" placeholder="Name" id="signupName" required>
-      <input type="email" placeholder="Email" id="signupEmail" required>
-      <input type="password" placeholder="Password" id="signupPassword" required>
-      <button class="btn" onclick="handleSignup()">Sign Up</button>
-    </div>
+<!-- Signup Modal -->
+<div id="signupModal" class="modal">
+  <div class="modal-content modal-animate">
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+    <h2>Sign Up</h2>
+    <input type="text" placeholder="Name" id="signupName" required>
+    <input type="email" placeholder="Email" id="signupEmail" required>
+    <input type="password" placeholder="Password" id="signupPassword" required>
+    <button class="btn" onclick="handleSignup()">Sign Up</button>
   </div>
+</div>
 
 
   <script type="module" src="main.js"></script>
 </body>
-
 </html>

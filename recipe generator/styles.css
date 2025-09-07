@@ -12,23 +12,28 @@
 }
 
 /* ----------------- Navbar ----------------- */
+
 .navbar {
   position: sticky;
   top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.8rem 2rem;
+  background: rgba(255, 145, 77, 0.9);
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
   z-index: 1000;
 }
 
-.imglogo {
-  width: 7rem;
+.imglogo{
+  width: 115px;
   height: auto;
-  border: 2px solid #fff;
-  border-radius: var(--radius);
+  border: 3px solid rgb(224, 50, 19);
+  border-radius: 10px;
+  position: relative;
+  top: 3px;
 }
 
 /* Nav Links */
@@ -48,7 +53,18 @@
   font-size: 1rem;
   transition: var(--transition);
 }
-
+ .nav-links ul li a {
+  
+  font-weight: 600;
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+.nav-links ul li a:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
 .nav-links ul li a::after {
   content: '';
   position: absolute;
@@ -66,14 +82,17 @@
 }
 
 /* ----------------- Page Layout ----------------- */
-body {
-  font-family: Arial, sans-serif;
-  background-color: var(--color-bg);
+
+ body {
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
   color: var(--color-text);
+  line-height: 1.6;
+  background: linear-gradient(120deg, #fff5e1, #ffe8d6);
+  background-attachment: fixed;
 }
+
 
 .grid-container {
   margin: 5rem auto 2rem;
@@ -102,6 +121,32 @@ h2 {
 }
 
 /* ----------------- Form ----------------- */
+
+form {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+input[type="file"], #pasteArea {
+  background: #fafafa;
+  border: 2px dashed var(--color-primary);
+  padding: 1rem;
+  border-radius: var(--radius);
+  transition: 0.3s ease;
+}
+
+#pasteArea:hover {
+  background: #fff1e6;
+  border-color: var(--color-secondary);
+}
+
 .form-group {
   margin-bottom: 1.25rem;
 }

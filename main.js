@@ -81,7 +81,7 @@ function openDashboard() {
   const user = localStorage.getItem("currentUser");
   if (user) {
     alert("Redirecting to dashboard...");
-    window.location.href = "#features";
+    window.location.href = "dashboard.html";
   } else {
     openModal("signupModal");
   }

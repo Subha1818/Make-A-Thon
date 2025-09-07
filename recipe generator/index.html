@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-    
     <!-- 🌟 Navbar at top -->
     <nav class="navbar">
         <div class="logo">
@@ -18,8 +15,8 @@
         </div>
         <div class="nav-links">
             <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Features</a></li>
+                <li><a href="../main.html" class="active">Home</a></li>
+                <li><a href="../main.html">Features</a></li>
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
@@ -31,13 +28,14 @@
     <form id="recipeForm">
         <div class="form-group">
             <label for="ingredients">Type ingredients manually (comma-separated):</label>
-            <textarea id="ingredients" rows="4" placeholder="e.g., chicken, rice, vegetables"
-                aria-describedby="ingredientsHelp"></textarea>
+            <textarea id="ingredients" rows="4" placeholder="e.g., chicken, rice, vegetables" aria-describedby="ingredientsHelp"></textarea>
             <small id="ingredientsHelp" class="form-text">Enter ingredients separated by commas.</small>
         </div>
        
 
-
+<small id="ingredientsHelp" class="form-text">
+    Enter ingredients separated by commas.
+</small>
 
         <div class="form-group">
             <label for="imageInput">Upload an image of ingredients/food:</label>
@@ -45,7 +43,6 @@
             <small id="imageInputHelp" class="form-text">Upload an image to analyze ingredients.</small>
             <div id="uploadStatus" class="form-text" style="display: none;"></div>
         </div>
-
         <div class="form-group">
             <label for="pasteArea">Paste an image of ingredients/food:</label>
             <div id="pasteArea" role="region" aria-label="Paste image area" tabindex="0">
@@ -56,17 +53,11 @@
             </div>
             <small class="form-text">Click and press Ctrl+V to paste an image.</small>
         </div>
-
         <button type="submit" id="generateBtn">Generate Recipe</button>
         <button type="button" id="saveRecipeBtn" style="display: none; margin-top: 10px;">Save Recipe</button>
     </form>
-
-    <div id="loading" class="output-section" style="display: none;" aria-live="polite">
-        Generating recipe... <span id="progressDot">...</span>
-    </div>
-
+    <div id="loading" class="output-section" style="display: none;" aria-live="polite">Generating recipe... <span id="progressDot">...</span></div>
     <div id="error" class="output-section" style="display: none;" aria-live="assertive"></div>
-
     <div class="grid-container">
         <div id="recipeDescription" class="output-section" style="display: none;">
             <h2>Recipe Description</h2>
@@ -86,16 +77,14 @@
         </div>
         <div id="foodImage" class="output-section" style="display: none;">
             <h2>Image of the generated food</h2>
-            <img id="generatedImage" src="https://via.placeholder.com/400x300?text=Generated+Food"
-                alt="Image of the generated food" style="max-width: 100%; height: auto;">
+            <img id="generatedImage" src="https://via.placeholder.com/400x300?text=Generated+Food" alt="Image of the generated food" style="max-width: 100%; height: auto;">
         </div>
-        <div id="wasteManagement" class="output-section" style="display: none;">
-            <h2>Waste Management Tips</h2>
-            <ul id="wasteContent"></ul>
-        </div>
+    <div id="wasteManagement" class="output-section" style="display: none;">
+        <h2>Waste Management Tips</h2>
+        <ul id="wasteContent"></ul>
+    </div>
     </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>

@@ -27,8 +27,6 @@ const apiKey = 'AIzaSyDsFojbwdTt2SxfgNXc1ct30qAf6tq0O_s'; // Store securely in p
 // Initialize Chart.js for nutrition chart
 let nutritionChart = null;
 
-
-
 function renderNutritionChart(data = { protein: 0, carbs: 0, fats: 0 }) {
     const ctx = document.getElementById('nutritionChart').getContext('2d');
     
@@ -75,8 +73,6 @@ function renderNutritionChart(data = { protein: 0, carbs: 0, fats: 0 }) {
         }
     });
 }
-
-
 
 // Handle paste event for images
 pasteArea.setAttribute('tabindex', '0');
@@ -173,7 +169,9 @@ recipeForm.addEventListener('submit', async (event) => {
 
     loadingDiv.style.display = 'block';
     errorDiv.style.display = 'none';
-    [recipeDescriptionDiv, recipeIngredientsDiv, recipeInstructionsDiv, wasteManagementDiv, foodImageDiv, document.getElementById('nutrition')].forEach(el => el.style.display = 'none');
+    [recipeDescriptionDiv, recipeIngredientsDiv, recipeInstructionsDiv, wasteManagementDiv, foodImageDiv, document.getElementById('nutrition')].forEach(el => {
+        if (el) el.style.display = 'none';
+    });
 
     let parts = [];
     let prompt = '';
@@ -189,33 +187,33 @@ recipeForm.addEventListener('submit', async (event) => {
         });
         const base64 = inputImageDataUrl.split(',')[1];
         parts.push({ inline_data: { mime_type: file.type, data: base64 } });
-        prompt = `Analyze this image to identify the food or ingredients, then provide a detailed recipe...`;
+        prompt = `Analyze this image to identify the food or ingredients, then provide a detailed indian style recipe...`;
     } else if (hasPastedImage) {
         parts.push({ inline_data: { mime_type: 'image/jpeg', data: pastedImageData } });
-        prompt = `Analyze this pasted image to identify the food or ingredients, then provide a detailed recipe...`;
+        prompt = `Analyze this pasted image to identify the food or ingredients, then provide a detailed indian style recipe ...`;
     } else {
-        prompt = `Using these ingredients: ${ingredients}, provide a detailed recipe...`;
+        prompt = `Using these ingredients: ${ingredients}, provide a detailed indian style recipe...`;
     }
 
     prompt += `
 
 Please provide the response in the following exact format:
 
-**Recipe Description**: [A brief description of the dish]
+*Recipe Description*: [A brief description of the dish]
 
-**Ingredients**: 
+*Ingredients*: 
 [List of ingredients with quantities, each on a new line]
 
-**Instructions**: 
+*Instructions*: 
 [Step-by-step cooking instructions, each step on a new line]
 
-**Nutrition**: 
+*Nutrition*: 
 • Calories: [number]
 • Protein: [number]g
 • Carbs: [number]g
 • Fats: [number]g
 
-**Waste Management Tips**: 
+*Waste Management Tips*: 
 [Suggestions for using or managing food waste, each tip on a new line]
 
 Ensure each section is clearly labeled and formatted exactly as shown above.`;
@@ -223,15 +221,18 @@ Ensure each section is clearly labeled and formatted exactly as shown above.`;
     parts.push({ text: prompt });
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ contents: [{ parts }] })
-        });
+        const response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contents: [{ parts }] })
+            }
+        );
 
         if (!response.ok) throw new Error(`API error: ${response.statusText}`);
         const data = await response.json();
-        const generatedText = data.candidates[0].content.parts[0].text;
+        const generatedText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
         // Parse the response more carefully
         const sections = { description: '', ingredients: '', instructions: '', waste: '', nutrition: '' };
@@ -240,30 +241,35 @@ Ensure each section is clearly labeled and formatted exactly as shown above.`;
 
         lines.forEach(line => {
             const trimmedLine = line.trim();
-            
-            if (trimmedLine.includes('**Recipe Description**')) {
+
+            // Check section headers (robust to presence/absence of surrounding asterisks)
+            const mDesc = trimmedLine.match(/^\**\s*recipe description\**:?\s*(.*)/i);
+            const mIngr = trimmedLine.match(/^\**\s*ingredients\**:?\s*(.*)/i);
+            const mInstr = trimmedLine.match(/^\**\s*instructions\**:?\s*(.*)/i);
+            const mNut = trimmedLine.match(/^\**\s*nutrition\**:?\s*(.*)/i);
+            const mWaste = trimmedLine.match(/^\**\s*waste management tips\**:?\s*(.*)/i);
+
+            if (mDesc) {
                 currentSection = 'description';
-                const content = trimmedLine.replace(/\*\*Recipe Description\*\*:?/i, '').trim();
-                if (content) sections.description = content;
-            } else if (trimmedLine.includes('**Ingredients**')) {
+                if (mDesc[1]) sections.description = mDesc[1].trim();
+            } else if (mIngr) {
                 currentSection = 'ingredients';
-                const content = trimmedLine.replace(/\*\*Ingredients\*\*:?/i, '').trim();
-                if (content) sections.ingredients = content;
-            } else if (trimmedLine.includes('**Instructions**')) {
+                if (mIngr[1]) sections.ingredients = mIngr[1].trim();
+            } else if (mInstr) {
                 currentSection = 'instructions';
-                const content = trimmedLine.replace(/\*\*Instructions\*\*:?/i, '').trim();
-                if (content) sections.instructions = content;
-            } else if (trimmedLine.includes('**Nutrition**')) {
+                if (mInstr[1]) sections.instructions = mInstr[1].trim();
+            } else if (mNut) {
                 currentSection = 'nutrition';
-                const content = trimmedLine.replace(/\*\*Nutrition\*\*:?/i, '').trim();
-                if (content) sections.nutrition = content;
-            } else if (trimmedLine.includes('**Waste Management Tips**')) {
+                if (mNut[1]) sections.nutrition = mNut[1].trim();
+            } else if (mWaste) {
                 currentSection = 'waste';
-                const content = trimmedLine.replace(/\*\*Waste Management Tips\*\*:?/i, '').trim();
-                if (content) sections.waste = content;
+                if (mWaste[1]) sections.waste = mWaste[1].trim();
             } else if (currentSection && trimmedLine) {
-                // Don't add section headers to content
-                if (!trimmedLine.includes('**')) {
+                // skip lines that are pure section markers; append the rest
+                if (!trimmedLine.startsWith('*') && trimmedLine.length > 0) {
+                    sections[currentSection] += (sections[currentSection] ? '\n' : '') + trimmedLine;
+                } else if (!trimmedLine.startsWith('*') && trimmedLine.length > 0) {
+                    // fallback, though above condition covers it
                     sections[currentSection] += (sections[currentSection] ? '\n' : '') + trimmedLine;
                 }
             }
@@ -303,7 +309,8 @@ Ensure each section is clearly labeled and formatted exactly as shown above.`;
         
         if (nutritionData.protein > 0 || nutritionData.carbs > 0 || nutritionData.fats > 0) {
             renderNutritionChart(nutritionData);
-            document.getElementById('nutrition').style.display = 'block';
+            const nutritionEl = document.getElementById('nutrition');
+            if (nutritionEl) nutritionEl.style.display = 'block';
         }
 
         // Store current recipe
@@ -319,7 +326,9 @@ Ensure each section is clearly labeled and formatted exactly as shown above.`;
         saveRecipeBtn.style.display = 'block';
         
         // Show all sections
-        [recipeDescriptionDiv, recipeIngredientsDiv, recipeInstructionsDiv, wasteManagementDiv].forEach(el => el.style.display = 'block');
+        [recipeDescriptionDiv, recipeIngredientsDiv, recipeInstructionsDiv, wasteManagementDiv].forEach(el => {
+            if (el) el.style.display = 'block';
+        });
         
     } catch (error) {
         errorDiv.textContent = `Error: ${error.message}. Please try again or check your internet connection.`;
